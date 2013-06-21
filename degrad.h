@@ -43,15 +43,14 @@ public:
     // Constructors:
     explicit constexpr Radians(float radiansValue) :value(radiansValue) {}
     Radians(Degrees degreesValue); // defined below
-	Radians(const Radians& radiansValue) = default;
-	Radians(Radians&& radiansValue) = default;
+    Radians(const Radians& radiansValue) = default;
+    Radians(Radians&& radiansValue) = default;
 
     // Accessor:
     constexpr float getValue() const { return value; }
-    void setValue(float newValue) { value = newValue; }
 
-	// Assignment operator:
-	Radians& operator=(const Radians& rhs) & = default;
+    // Assignment operator:
+    Radians& operator=(const Radians& rhs) & = default;
     Radians& operator=(Radians&& rhs) & noexcept = default;
 
     // Arithmetic operators:
@@ -85,17 +84,16 @@ public:
     // Constructors:
     explicit constexpr Degrees(float degreesValue) :value(degreesValue) {}
     Degrees(Radians radiansValue) :value(radiansValue.getValue() * RAD2DEG) {}
-	Degrees(const Degrees& degreesValue) = default;
-	Degrees(Degrees&& degreesValue) = default;
+    Degrees(const Degrees& degreesValue) = default;
+    Degrees(Degrees&& degreesValue) = default;
 
     // Accessor:
     constexpr float getValue() const { return value; }
-    void setValue(float newValue) { value = newValue; }
 
-	// Assignment operator:
-	Degrees& operator=(const Degrees& rhs) & = default;
-	Degrees& operator=(Degrees&& rhs) & noexcept = default;
-	
+    // Assignment operator:
+    Degrees& operator=(const Degrees& rhs) & = default;
+    Degrees& operator=(Degrees&& rhs) & noexcept = default;
+    
     // Arithmetic operators:
     constexpr Degrees operator -() const            { return Degrees(-value); }
     constexpr Degrees operator +(Degrees rhs) const { return Degrees(value + rhs.value); }
