@@ -42,33 +42,40 @@ class Radians {
 public:
     // Constructors:
     explicit constexpr Radians(float radiansValue) :value(radiansValue) {}
-    Radians(const Degrees& degreesValue); // defined below
+    Radians(Degrees degreesValue); // defined below
+	Radians(const Radians& radiansValue) = default;
+	Radians(Radians&& radiansValue) = default;
 
     // Accessor:
     constexpr float getValue() const { return value; }
+    void setValue(float newValue) { value = newValue; }
+
+	// Assignment operator:
+	Radians& operator=(const Radians& rhs) & = default;
+    Radians& operator=(Radians&& rhs) & noexcept = default;
 
     // Arithmetic operators:
-    constexpr Radians operator -() const                   { return Radians(-value); }
-    constexpr Radians operator +(const Radians& rhs) const { return Radians(value + rhs.value); }
-    constexpr Radians operator -(const Radians& rhs) const { return Radians(value - rhs.value); }
-    constexpr Radians operator *(float rhs) const          { return Radians(value * rhs); }
-    constexpr Radians operator /(float rhs) const          { return Radians(value / rhs); }
-    constexpr float   operator /(const Radians& rhs) const { return (value / rhs.value); }
-    constexpr friend Radians operator*(float f, const Radians& d) { return Radians(d.value * f); }
+    constexpr Radians operator -() const            { return Radians(-value); }
+    constexpr Radians operator +(Radians rhs) const { return Radians(value + rhs.value); }
+    constexpr Radians operator -(Radians rhs) const { return Radians(value - rhs.value); }
+    constexpr Radians operator *(float rhs) const   { return Radians(value * rhs); }
+    constexpr Radians operator /(float rhs) const   { return Radians(value / rhs); }
+    constexpr float   operator /(Radians rhs) const { return (value / rhs.value); }
+    constexpr friend Radians operator*(float f, Radians d) { return Radians(d.value * f); }
 
     // Comparison and relational operators:
-    constexpr bool operator ==(const Radians& rhs) const { return value == rhs.value; }
-    constexpr bool operator !=(const Radians& rhs) const { return value != rhs.value; }
-    constexpr bool operator > (const Radians& rhs) const { return value >  rhs.value; }
-    constexpr bool operator < (const Radians& rhs) const { return value <  rhs.value; }
-    constexpr bool operator >=(const Radians& rhs) const { return value >= rhs.value; }
-    constexpr bool operator <=(const Radians& rhs) const { return value <= rhs.value; }
+    constexpr bool operator ==(Radians rhs) const { return value == rhs.value; }
+    constexpr bool operator !=(Radians rhs) const { return value != rhs.value; }
+    constexpr bool operator > (Radians rhs) const { return value >  rhs.value; }
+    constexpr bool operator < (Radians rhs) const { return value <  rhs.value; }
+    constexpr bool operator >=(Radians rhs) const { return value >= rhs.value; }
+    constexpr bool operator <=(Radians rhs) const { return value <= rhs.value; }
 
     // Compound assignment operators:
-    Radians& operator +=(const Radians& rhs) { value += rhs.value; return *this; }
-    Radians& operator -=(const Radians& rhs) { value -= rhs.value; return *this; }
-    Radians& operator *=(float rhs)          { value *= rhs; return *this; }
-    Radians& operator /=(float rhs)          { value /= rhs; return *this; }
+    Radians& operator +=(Radians rhs) { value += rhs.value; return *this; }
+    Radians& operator -=(Radians rhs) { value -= rhs.value; return *this; }
+    Radians& operator *=(float rhs)   { value *= rhs; return *this; }
+    Radians& operator /=(float rhs)   { value /= rhs; return *this; }
 };
 
 /*-------------------------------------------------------------------------*/
@@ -77,37 +84,44 @@ class Degrees {
 public:
     // Constructors:
     explicit constexpr Degrees(float degreesValue) :value(degreesValue) {}
-    Degrees(const Radians& radiansValue) :value(radiansValue.getValue() * RAD2DEG) {}
+    Degrees(Radians radiansValue) :value(radiansValue.getValue() * RAD2DEG) {}
+	Degrees(const Degrees& degreesValue) = default;
+	Degrees(Degrees&& degreesValue) = default;
 
     // Accessor:
     constexpr float getValue() const { return value; }
+    void setValue(float newValue) { value = newValue; }
 
+	// Assignment operator:
+	Degrees& operator=(const Degrees& rhs) & = default;
+	Degrees& operator=(Degrees&& rhs) & noexcept = default;
+	
     // Arithmetic operators:
-    constexpr Degrees operator -() const                   { return Degrees(-value); }
-    constexpr Degrees operator +(const Degrees& rhs) const { return Degrees(value + rhs.value); }
-    constexpr Degrees operator -(const Degrees& rhs) const { return Degrees(value - rhs.value); }
-    constexpr Degrees operator *(float rhs) const          { return Degrees(value * rhs); }
-    constexpr Degrees operator /(float rhs) const          { return Degrees(value / rhs); }
-    constexpr float   operator /(const Degrees& rhs) const { return (value / rhs.value); }
-    constexpr friend Degrees operator*(float f, const Degrees& d) { return Degrees(d.value * f); }
+    constexpr Degrees operator -() const            { return Degrees(-value); }
+    constexpr Degrees operator +(Degrees rhs) const { return Degrees(value + rhs.value); }
+    constexpr Degrees operator -(Degrees rhs) const { return Degrees(value - rhs.value); }
+    constexpr Degrees operator *(float rhs) const   { return Degrees(value * rhs); }
+    constexpr Degrees operator /(float rhs) const   { return Degrees(value / rhs); }
+    constexpr float   operator /(Degrees rhs) const { return (value / rhs.value); }
+    constexpr friend Degrees operator*(float f, Degrees d) { return Degrees(d.value * f); }
 
     // Comparison and relational operators:
-    constexpr bool operator ==(const Degrees& rhs) const { return value == rhs.value; }
-    constexpr bool operator !=(const Degrees& rhs) const { return value != rhs.value; }
-    constexpr bool operator > (const Degrees& rhs) const { return value >  rhs.value; }
-    constexpr bool operator < (const Degrees& rhs) const { return value <  rhs.value; }
-    constexpr bool operator >=(const Degrees& rhs) const { return value >= rhs.value; }
-    constexpr bool operator <=(const Degrees& rhs) const { return value <= rhs.value; }
+    constexpr bool operator ==(Degrees rhs) const { return value == rhs.value; }
+    constexpr bool operator !=(Degrees rhs) const { return value != rhs.value; }
+    constexpr bool operator > (Degrees rhs) const { return value >  rhs.value; }
+    constexpr bool operator < (Degrees rhs) const { return value <  rhs.value; }
+    constexpr bool operator >=(Degrees rhs) const { return value >= rhs.value; }
+    constexpr bool operator <=(Degrees rhs) const { return value <= rhs.value; }
 
     // Compound assignment operators:
-    Degrees& operator +=(const Degrees& rhs) { value += rhs.value; return *this; }
-    Degrees& operator -=(const Degrees& rhs) { value -= rhs.value; return *this; }
-    Degrees& operator *=(float rhs)          { value *= rhs; return *this; }
-    Degrees& operator /=(float rhs)          { value /= rhs; return *this; }
+    Degrees& operator +=(Degrees rhs) { value += rhs.value; return *this; }
+    Degrees& operator -=(Degrees rhs) { value -= rhs.value; return *this; }
+    Degrees& operator *=(float rhs)   { value *= rhs; return *this; }
+    Degrees& operator /=(float rhs)   { value /= rhs; return *this; }
 };
 
 /*-------------------------------------------------------------------------*/
-inline Radians::Radians(const Degrees& degreesValue) :value(degreesValue.getValue() * DEG2RAD) {}
+inline Radians::Radians(Degrees degreesValue) :value(degreesValue.getValue() * DEG2RAD) {}
 
 /*-------------------------------------------------------------------------*/
 // User-defined literal suffix operators.

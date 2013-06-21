@@ -58,4 +58,6 @@ int main() {
 	// Showcasing a few of the operators...
 	Degrees d = 4 * (-90_deg + 45_deg - 5_deg) / -2.5f; // d is 80 degrees
 	foo(d);
+
+	//90_deg = 180_deg;
 }
