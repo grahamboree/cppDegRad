@@ -48,12 +48,12 @@ public:
     constexpr float getValue() const { return value; }
 
     // Arithmetic operators:
-    constexpr Radians operator -() const                     { return Radians(-value); }
-    constexpr Radians operator +(const Radians& rhs) const     { return Radians(value + rhs.value); }
-    constexpr Radians operator -(const Radians& rhs) const     { return Radians(value - rhs.value); }
-    constexpr Radians operator *(float rhs) const             { return Radians(value * rhs); }
-    constexpr Radians operator /(float rhs) const             { return Radians(value / rhs); }
-    constexpr float   operator /(const Radians& rhs) const     { return (value / rhs.value); }
+    constexpr Radians operator -() const                   { return Radians(-value); }
+    constexpr Radians operator +(const Radians& rhs) const { return Radians(value + rhs.value); }
+    constexpr Radians operator -(const Radians& rhs) const { return Radians(value - rhs.value); }
+    constexpr Radians operator *(float rhs) const          { return Radians(value * rhs); }
+    constexpr Radians operator /(float rhs) const          { return Radians(value / rhs); }
+    constexpr float   operator /(const Radians& rhs) const { return (value / rhs.value); }
     constexpr friend Radians operator*(float f, const Radians& d) { return Radians(d.value * f); }
 
     // Comparison and relational operators:
@@ -83,12 +83,12 @@ public:
     constexpr float getValue() const { return value; }
 
     // Arithmetic operators:
-    constexpr Degrees operator -() const                     { return Degrees(-value); }
-    constexpr Degrees operator +(const Degrees& rhs) const     { return Degrees(value + rhs.value); }
-    constexpr Degrees operator -(const Degrees& rhs) const     { return Degrees(value - rhs.value); }
-    constexpr Degrees operator *(float rhs) const             { return Degrees(value * rhs); }
-    constexpr Degrees operator /(float rhs) const             { return Degrees(value / rhs); }
-    constexpr float   operator /(const Degrees& rhs) const     { return (value / rhs.value); }
+    constexpr Degrees operator -() const                   { return Degrees(-value); }
+    constexpr Degrees operator +(const Degrees& rhs) const { return Degrees(value + rhs.value); }
+    constexpr Degrees operator -(const Degrees& rhs) const { return Degrees(value - rhs.value); }
+    constexpr Degrees operator *(float rhs) const          { return Degrees(value * rhs); }
+    constexpr Degrees operator /(float rhs) const          { return Degrees(value / rhs); }
+    constexpr float   operator /(const Degrees& rhs) const { return (value / rhs.value); }
     constexpr friend Degrees operator*(float f, const Degrees& d) { return Degrees(d.value * f); }
 
     // Comparison and relational operators:
@@ -111,9 +111,9 @@ inline Radians::Radians(const Degrees& degreesValue) :value(degreesValue.getValu
 
 /*-------------------------------------------------------------------------*/
 // User-defined literal suffix operators.
-inline Radians operator"" _rad(long double r)          { return Radians(r); }
+inline Radians operator"" _rad(long double r)        { return Radians(r); }
 inline Radians operator"" _rad(unsigned long long r) { return Radians(r); }
-inline Degrees operator"" _deg(long double d)          { return Degrees(d); }
+inline Degrees operator"" _deg(long double d)        { return Degrees(d); }
 inline Degrees operator"" _deg(unsigned long long d) { return Degrees(d); }
 
 #endif // DEGRAD_H 
